@@ -1,0 +1,80 @@
+---
+# SPDX-FileCopyrightText: Copyright DB Netz AG
+# SPDX-License-Identifier: CC0-1.0
+
+repos:
+    - repo: https://github.com/Lucas-C/pre-commit-hooks
+      rev: v1.5.1
+      hooks:
+          - id: insert-license
+            name: Insert license headers (Markdown)
+            args:
+                - --detect-license-in-X-top-lines=15
+                - --license-filepath
+                - LICENSES/.license_header_cc0.txt
+                - --comment-style
+                - <!--| ~| -->
+            types_or: [markdown]
+            files: ''
+          - id: insert-license
+            name: Insert license headers (XML)
+            args:
+                - --detect-license-in-X-top-lines=15
+                - --license-filepath
+                - LICENSES/.license_header_cc0.txt
+                - --insert-license-after-regex
+                - ^<\?xml.*\?>
+                - --comment-style
+                - <!--| ~| -->
+            types_or: [xml]
+            files: ''
+          - id: insert-license
+            name: Insert license headers (C, C++)
+            args:
+                - --detect-license-in-X-top-lines=15
+                - --license-filepath
+                - LICENSES/.license_header.txt
+                - --comment-style
+                - /*| *| */
+            types_or: [c, c++]
+            files: ''
+          - id: insert-license
+            name: Insert license headers (Python)
+            args:
+                - --detect-license-in-X-top-lines=15
+                - --license-filepath
+                - LICENSES/.license_header.txt
+                - --comment-style
+                - '#'
+            types_or: [python]
+            files: ''
+          - id: insert-license
+            name: Insert license headers (CMake, Shell)
+            args:
+                - --detect-license-in-X-top-lines=15
+                - --license-filepath
+                - LICENSES/.license_header_cc0.txt
+                - --comment-style
+                - '#'
+            types_or: [gitmodules, gitignore, cmake, shell]
+            files: ''
+          - id: insert-license
+            name: Insert license headers (YAML)
+            args:
+                - --detect-license-in-X-top-lines=15
+                - --license-filepath
+                - LICENSES/.license_header_cc0.txt
+                - --insert-license-after-regex
+                - ^---$
+                - --comment-style
+                - '#'
+            types_or: [yaml]
+            files: ''
+    - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
+      rev: 0.2.3
+      hooks:
+          - id: yamlfmt
+    - repo: https://github.com/fsfe/reuse-tool
+      rev: v2.1.0
+      hooks:
+          - id: reuse
